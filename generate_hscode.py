@@ -19,6 +19,7 @@ user = "tien314/hscode8-version5"
 retriever = BM25HF.load_from_hub(f"{user}", load_corpus = True, mmap = True)
 
 def process_retrieval(description):
+  description = description.lower()
   # Tokenize the query
   query_tokens = bm25s.tokenize(description)
   # Get top-k results as a tuple of (doc ids, scores). Both are arrays of shape (n_queries, k)
