@@ -53,7 +53,7 @@ def create_BM25Model_local(cleaned_list,model_path):
 def load_BM25Model_local(model_path):
     ### Load the BM25 index as a memory-mapped file, which is memory efficient
     # and reduce overhead of loading the full index into memory
-    retriever = bm25s.BM25.load(model_path, load_corpus = True,mmap=True)
+    retriever = bm25s.BM25.load(model_path, load_corpus = True)
     return retriever
 
 def create_BM25_to_save_huggingface(cleaned_list, user):
@@ -68,7 +68,7 @@ def create_BM25_to_save_huggingface(cleaned_list, user):
     retriever.save_to_hub(f"{user}", token = token, corpus=cleaned_list)
 
 def load_BM25Model_from_huggingface(user):
-    retriever = BM25HF.load_from_hub(f"{user}", load_corpus=True)
+    retriever = BM25HF.load_from_hub(f"{user}", load_corpus=True, mmap=True)
     return retriever
 
 
